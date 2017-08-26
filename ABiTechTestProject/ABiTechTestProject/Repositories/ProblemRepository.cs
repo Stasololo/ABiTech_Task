@@ -8,13 +8,13 @@ namespace ABiTechTestProject.Repositories
 {
     public class ProblemRepository
     {
-        public IEnumerable<Problem>GetProblem()
+        public IEnumerable<Problem>Get()
         {
             var ctx = new ApplicationDbContext();
             return ctx.Problems;
         }
 
-        public Problem CreateProblem(Problem problem)
+        public Problem Create(Problem problem)
         {
             var ctx = new ApplicationDbContext();
             var result = ctx.Problems.Add(problem);
@@ -22,7 +22,7 @@ namespace ABiTechTestProject.Repositories
             return result;
         }
 
-        public void DeleteProblem(int? Id)
+        public void Delete(int? Id)
         {
             var ctx = new ApplicationDbContext();
             var problem = ctx.Problems.Find(Id);
@@ -30,10 +30,15 @@ namespace ABiTechTestProject.Repositories
             ctx.SaveChanges();
         }
 
-        public void UpdateProblem(Problem problem)
+        public void Update(int? Id, string name, string description, Status status, Person person)
         {
             var ctx = new ApplicationDbContext();
-            
+            var problem = ctx.Problems.Find(Id);
+            problem.Name = name;
+            problem.Description = description;
+            problem.Status = status;
+            problem.Person = person;
+            ctx.SaveChanges();
         }
     }
 }

@@ -7,13 +7,13 @@ namespace ABiTechTestProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ABiTechProject : IMigrationMetadata
+    public sealed partial class TestProject : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ABiTechProject));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TestProject));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708251236326_ABiTechProject"; }
+            get { return "201708261228055_TestProject"; }
         }
         
         string IMigrationMetadata.Source
