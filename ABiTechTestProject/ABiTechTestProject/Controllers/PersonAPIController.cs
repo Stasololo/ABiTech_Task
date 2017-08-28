@@ -12,7 +12,7 @@ namespace ABiTechTestProject.Controllers
     public class PersonAPIController : ApiController
     {
         [HttpGet]
-        [Route("api/Person")]
+        [Route("api/PersonAPI")]
         public IEnumerable<Person> Get()
         {
             var repo = new PersonRepository();
@@ -20,7 +20,7 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpPost]
-        [Route("api/Person/Create")]
+        [Route("api/PersonAPI/Create")]
         public Person Create(Person person)
         {
             var repo = new PersonRepository();
@@ -28,7 +28,7 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Person/Delete")]
+        [Route("api/PersonAPI/Delete")]
         public void Delete(int? Id)
         {
             var repo = new PersonRepository();
@@ -36,7 +36,7 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpPut]
-        [Route("api/Person/Update")]
+        [Route("api/PersonAPI/Update")]
         public void Update(int? Id, string email)
         {
             var repo = new PersonRepository();

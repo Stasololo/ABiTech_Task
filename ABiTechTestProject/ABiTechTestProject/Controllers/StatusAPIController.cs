@@ -12,7 +12,7 @@ namespace ABiTechTestProject.Controllers
     public class StatusAPIController : ApiController
     {
         [HttpGet]
-        [Route("api/Status")]
+        [Route("api/StatusAPI")]
         public IEnumerable<Status> Get()
         {
             var repo = new StatusRepository();
@@ -20,7 +20,7 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpPost]
-        [Route("api/Status/Create")]
+        [Route("api/StatusAPI/Create")]
         public Status Create(Status status)
         {
             var repo = new StatusRepository();
@@ -28,7 +28,7 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Status/Delete")]
+        [Route("api/StatusAPI/Delete")]
         public void Delete(int? Id)
         {
             var repo = new StatusRepository();
@@ -36,7 +36,7 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpPut]
-        [Route("api/Status/Update")]
+        [Route("api/StatusAPI/Update")]
         public void Update(int? Id, string title)
         {
             var repo = new StatusRepository();

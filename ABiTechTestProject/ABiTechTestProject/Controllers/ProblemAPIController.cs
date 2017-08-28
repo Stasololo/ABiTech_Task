@@ -1,5 +1,6 @@
 ﻿using ABiTechTestProject.Models;
 using ABiTechTestProject.Repositories;
+using ABiTechTestProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,36 +12,44 @@ namespace ABiTechTestProject.Controllers
 {
     public class ProblemAPIController : ApiController
     {
-        [HttpGet]
-        [Route("api/Problem")]
-        public IEnumerable<Problem> Get()
+        private readonly ProblemRepository _repo;
+        public ProblemAPIController()
         {
-            var repo = new ProblemRepository();
-            return repo.Get();
+            _repo = new ProblemRepository();
+        }
+
+        [HttpGet]
+        [Route("api/ProblemAPI")]
+        public IEnumerable<Problem> Get()
+        {            
+            return _repo.Get();
         }
 
         [HttpPost]
-        [Route("api/Problem/Create")]
+        [Route("api/ProblemAPI/Create")]
         public Problem Create(Problem problem)
         {
-            var repo = new ProblemRepository();
-            return repo.Create(problem);
+            return _repo.Create(problem);
         }
 
         [HttpDelete]
-        [Route("api/Problem/Delete")]
+        [Route("api/ProblemAPI/Delete/{Id:int}")]
         public void Delete(int? Id)
         {
-            var repo = new ProblemRepository();
-            repo.Delete(Id);
+            _repo.Delete(Id);
         }
 
         [HttpPut]
-        [Route("api/Problem/Update")]
-        public void Update(int? Id, string name, string description, Status status, Person person)
+        [Route("api/ProblemAPI/Update")]
+        public Problem Update(ProblemUpdateVM model)
         {
-            var repo = new ProblemRepository();
-            repo.Update(Id, name, description, status, person);
+            _repo.Update(model);
+            return _repo.Get(model.Id);
+        }
+
+        public new void Dispose()
+        {
+            _repo.Dispose();
         }
     }
 }
