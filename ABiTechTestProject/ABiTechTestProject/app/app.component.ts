@@ -1,7 +1,6 @@
-﻿import { Component, OnInit  } from '@angular/core';
-//import { Inject} from '@angular/di';
+﻿import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { IStatus, IProblem, IPerson } from './models/Models';    
+import { IStatus, IProblem, IPerson } from './models/Models';
 
 
 @Component({
@@ -10,7 +9,7 @@ import { IStatus, IProblem, IPerson } from './models/Models';
 })
 
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
     problemList: Array<IProblem> = [];
     statusList: Array<IStatus> = [];
@@ -28,7 +27,8 @@ export class AppComponent implements OnInit{
             Id: null,
             Email: "",
             FirstName: "",
-            SurName: ""
+            SurName: "",
+            BirthDay :null
         }
     };
 
@@ -44,13 +44,10 @@ export class AppComponent implements OnInit{
             Id: null,
             Email: "",
             FirstName: "",
-            SurName: ""
+            SurName: "",
+            BirthDay: null
         }
     };
-
-    
-
-    
 
     constructor(private http: Http) {
     }
@@ -58,15 +55,15 @@ export class AppComponent implements OnInit{
     ngOnInit() {
         this.http.get('/api/ProblemAPI').subscribe(data => {
             this.problemList = JSON.parse(data['_body']);
-        }); 
-        
+        });
+
         this.http.get('/api/StatusAPI').subscribe(data => {
             this.statusList = JSON.parse(data['_body']);
-        });  
+        });
 
         this.http.get('/api/PersonAPI').subscribe(data => {
             this.personList = JSON.parse(data['_body']);
-        });  
+        });
     }
 
     setActiveProblem(problem: IProblem): void {
@@ -74,9 +71,14 @@ export class AppComponent implements OnInit{
     }
 
     createProblem(): void {
-        this.http.post('/api/ProblemAPI/Create', this.newProblem).subscribe(data => {            
+        this.http.post('/api/ProblemAPI/Create', this.newProblem).subscribe(data => {
             this.problemList.push(JSON.parse(data['_body']));
-        });                
+
+            this.newProblem.Name = '';
+            this.newProblem.Description = '';
+            this.newProblem.Status = null;
+            this.newProblem.Person = null;
+        });
     }
 
     deleteProblem(model: IProblem): void {
@@ -97,28 +99,12 @@ export class AppComponent implements OnInit{
             PersonId: model.Person.Id
         };
         this.http.put('/api/ProblemAPI/Update/', data).subscribe((res) => {
-            let data = JSON.parse(res['_body']) as IProblem;   
+            let data = JSON.parse(res['_body']) as IProblem;
 
             var index = this.problemList.indexOf(model, 0);
             if (index > -1) {
                 this.problemList.splice(index, 1, data);
             }
-
-            //this.problemList.forEach(function (item)
-            //{
-            //    if (item.Id == data.Id)
-            //    {                                        
-            //        item = data;   
-            //        console.log(data);
-            //    }
-            //});
         });
     }
 }
-
-
-//public int Id { get; set; }
-//        public string Name { get; set; }
-//        public string Description { get; set; }
-//        public int StatusId { get; set; }
-//        public int PersonId { get; set; }

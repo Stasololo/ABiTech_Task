@@ -11,36 +11,39 @@ namespace ABiTechTestProject.Controllers
 {
     public class PersonAPIController : ApiController
     {
+        private readonly PersonRepository _repo;
+
+        public PersonAPIController()
+        {
+            _repo = new PersonRepository();
+        }
         [HttpGet]
         [Route("api/PersonAPI")]
         public IEnumerable<Person> Get()
         {
-            var repo = new PersonRepository();
-            return repo.Get();
+            return _repo.Get();
         }
 
         [HttpPost]
         [Route("api/PersonAPI/Create")]
         public Person Create(Person person)
         {
-            var repo = new PersonRepository();
-            return repo.Create(person);
+            return _repo.Create(person);
         }
 
         [HttpDelete]
         [Route("api/PersonAPI/Delete")]
         public void Delete(int? Id)
         {
-            var repo = new PersonRepository();
-            repo.Delete(Id);
+            _repo.Delete(Id);
         }
 
         [HttpPut]
         [Route("api/PersonAPI/Update")]
-        public void Update(int? Id, string email)
+        public Person Update(Person model)
         {
-            var repo = new PersonRepository();
-            repo.Update(Id, email);
+            _repo.Update(model);
+            return _repo.Get(model.Id);
         }
     }
 }

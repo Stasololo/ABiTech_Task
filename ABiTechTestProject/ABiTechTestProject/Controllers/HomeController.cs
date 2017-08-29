@@ -11,7 +11,12 @@ namespace ABiTechTestProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            return View();
+        }
 
+        public ActionResult Person()
+        {
+            ViewBag.Title = "Home Page";
             return View();
         }
     }

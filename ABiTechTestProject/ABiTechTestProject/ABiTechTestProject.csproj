@@ -270,6 +270,7 @@
     <Compile Include="ViewModel\StatusVM.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\person-list.html" />
     <Content Include="app\templates\todo-list.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1123,6 +1124,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Person.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1137,10 +1139,11 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\person.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\Models.ts" />
+    <TypeScriptCompile Include="app\app.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

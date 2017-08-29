@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-//import { Inject} from '@angular/di';
 var http_1 = require("@angular/http");
 var AppComponent = (function () {
     function AppComponent(http) {
@@ -68,6 +67,10 @@ var AppComponent = (function () {
         var _this = this;
         this.http.post('/api/ProblemAPI/Create', this.newProblem).subscribe(function (data) {
             _this.problemList.push(JSON.parse(data['_body']));
+            _this.newProblem.Name = '';
+            _this.newProblem.Description = '';
+            _this.newProblem.Status = null;
+            _this.newProblem.Person = null;
         });
     };
     AppComponent.prototype.deleteProblem = function (model) {
@@ -94,14 +97,6 @@ var AppComponent = (function () {
             if (index > -1) {
                 _this.problemList.splice(index, 1, data);
             }
-            //this.problemList.forEach(function (item)
-            //{
-            //    if (item.Id == data.Id)
-            //    {                                        
-            //        item = data;   
-            //        console.log(data);
-            //    }
-            //});
         });
     };
     return AppComponent;
@@ -114,9 +109,4 @@ AppComponent = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], AppComponent);
 exports.AppComponent = AppComponent;
-//public int Id { get; set; }
-//        public string Name { get; set; }
-//        public string Description { get; set; }
-//        public int StatusId { get; set; }
-//        public int PersonId { get; set; }
 //# sourceMappingURL=app.component.js.map

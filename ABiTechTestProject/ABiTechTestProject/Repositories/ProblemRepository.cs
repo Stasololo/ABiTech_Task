@@ -28,6 +28,10 @@ namespace ABiTechTestProject.Repositories
 
         public Problem Create(Problem problem)
         {
+            var status = _dbContext.Statuses.Find(problem.Status.Id);
+            var person = _dbContext.Persons.Find(problem.Person.Id);
+            problem.Status = status;
+            problem.Person = person;
             var result = _dbContext.Problems.Add(problem);
             _dbContext.SaveChanges();
             return result;

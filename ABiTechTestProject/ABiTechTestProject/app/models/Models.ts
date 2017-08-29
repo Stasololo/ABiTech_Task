@@ -6,7 +6,8 @@
 export interface IPerson{    
     Id:number;
     FirstName:string;
-    SurName:string;
+    SurName: string;
+    BirthDay: Date
     Email:string;    
 }
 
