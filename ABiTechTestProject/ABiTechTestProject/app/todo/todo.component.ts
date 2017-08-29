@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { IStatus, IProblem, IPerson } from './models/Models';
+import { IStatus, IProblem, IPerson } from '../models/Models';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { IStatus, IProblem, IPerson } from './models/Models';
 })
 
 
-export class AppComponent implements OnInit {
+export class TodoComponent implements OnInit {
 
     problemList: Array<IProblem> = [];
     statusList: Array<IStatus> = [];
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
             Email: "",
             FirstName: "",
             SurName: "",
-            BirthDay :null
+            BirthDay: null
         }
     };
 

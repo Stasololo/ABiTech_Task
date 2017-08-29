@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var AppComponent = (function () {
-    function AppComponent(http) {
+var TodoComponent = (function () {
+    function TodoComponent(http) {
         this.http = http;
         this.problemList = [];
         this.statusList = [];
@@ -29,7 +29,8 @@ var AppComponent = (function () {
                 Id: null,
                 Email: "",
                 FirstName: "",
-                SurName: ""
+                SurName: "",
+                BirthDay: null
             }
         };
         this.selectedProblem = {
@@ -44,11 +45,12 @@ var AppComponent = (function () {
                 Id: null,
                 Email: "",
                 FirstName: "",
-                SurName: ""
+                SurName: "",
+                BirthDay: null
             }
         };
     }
-    AppComponent.prototype.ngOnInit = function () {
+    TodoComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.http.get('/api/ProblemAPI').subscribe(function (data) {
             _this.problemList = JSON.parse(data['_body']);
@@ -60,10 +62,10 @@ var AppComponent = (function () {
             _this.personList = JSON.parse(data['_body']);
         });
     };
-    AppComponent.prototype.setActiveProblem = function (problem) {
+    TodoComponent.prototype.setActiveProblem = function (problem) {
         this.selectedProblem = problem;
     };
-    AppComponent.prototype.createProblem = function () {
+    TodoComponent.prototype.createProblem = function () {
         var _this = this;
         this.http.post('/api/ProblemAPI/Create', this.newProblem).subscribe(function (data) {
             _this.problemList.push(JSON.parse(data['_body']));
@@ -73,7 +75,7 @@ var AppComponent = (function () {
             _this.newProblem.Person = null;
         });
     };
-    AppComponent.prototype.deleteProblem = function (model) {
+    TodoComponent.prototype.deleteProblem = function (model) {
         var _this = this;
         this.http.delete('/api/ProblemAPI/Delete/' + model.Id).subscribe(function (res) {
             var index = _this.problemList.indexOf(model, 0);
@@ -82,7 +84,7 @@ var AppComponent = (function () {
             }
         });
     };
-    AppComponent.prototype.updateProblem = function (model) {
+    TodoComponent.prototype.updateProblem = function (model) {
         var _this = this;
         var data = {
             Id: model.Id,
@@ -99,14 +101,14 @@ var AppComponent = (function () {
             }
         });
     };
-    return AppComponent;
+    return TodoComponent;
 }());
-AppComponent = __decorate([
+TodoComponent = __decorate([
     core_1.Component({
         selector: 'todo-list',
         templateUrl: '/app/templates/todo-list.html'
     }),
     __metadata("design:paramtypes", [http_1.Http])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], TodoComponent);
+exports.TodoComponent = TodoComponent;
+//# sourceMappingURL=todo.component.js.map

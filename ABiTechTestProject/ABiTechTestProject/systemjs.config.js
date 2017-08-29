@@ -24,7 +24,7 @@
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
             app: {
-                main: './main.js',
+                main: './*.js',
                 defaultExtension: 'js'
             },
             rxjs: {

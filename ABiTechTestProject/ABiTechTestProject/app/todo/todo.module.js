@@ -9,20 +9,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
-var app_component_1 = require("./app.component");
 var http_1 = require("@angular/http");
-var person_component_1 = require("./person.component");
-var AppModule = (function () {
-    function AppModule() {
+var todo_component_1 = require("./todo.component");
+var TodoModule = (function () {
+    function TodoModule() {
     }
-    return AppModule;
+    return TodoModule;
 }());
-AppModule = __decorate([
+TodoModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule],
-        declarations: [person_component_1.PersonComponent, app_component_1.AppComponent],
-        bootstrap: [person_component_1.PersonComponent]
+        declarations: [todo_component_1.TodoComponent],
+        bootstrap: [todo_component_1.TodoComponent]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], TodoModule);
+exports.TodoModule = TodoModule;
+//# sourceMappingURL=todo.module.js.map

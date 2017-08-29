@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPerson } from './models/Models';   
+import { IPerson } from '../models/Models';   
 
 
 @Component({
