@@ -1139,12 +1139,13 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\person\person.component.ts" />
-    <TypeScriptCompile Include="app\person\person.module.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\components\person.component.ts" />
     <TypeScriptCompile Include="app\models\Models.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\todo\todo.component.ts" />
-    <TypeScriptCompile Include="app\todo\todo.module.ts" />
+    <TypeScriptCompile Include="app\components\todo.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
