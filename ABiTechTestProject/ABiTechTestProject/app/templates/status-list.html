@@ -1,0 +1,65 @@
+﻿<div class="container">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalCreate">Create</button>
+    <br />
+    <div class="container" style="overflow-y: scroll;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let value of statusList; trackBy: index;'>
+                    <td>{{value.Title}}</td>
+                    <td>
+                        <button type="button" (click)="setActiveStatus(value)" class="btn btn-default" data-toggle="modal" data-target="#myModalUpdate">Update</button>
+                    </td>
+                    <td>
+                        <input class="btn btn-default" (click)="deleteStatus(value)" type="submit" value="Delete">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--Modal Window Create-->
+    <div class="modal fade" id="myModalCreate" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create</h4>
+                </div>
+                <div class="container">
+                    Title: <input type="text" class="form-control" [(ngModel)]="newStatus.Title" /><br>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="createStatus()">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <!--Modal Window Update-->
+    <div class="modal fade" id="myModalUpdate" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update</h4>
+                </div>
+                <div class="container">
+                    Title:<input type="text" class="form-control" [(ngModel)]="selectedStatus.Title" /><br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateStatus(selectedStatus)">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

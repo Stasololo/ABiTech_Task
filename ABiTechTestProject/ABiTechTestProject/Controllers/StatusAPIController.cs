@@ -11,36 +11,40 @@ namespace ABiTechTestProject.Controllers
 {
     public class StatusAPIController : ApiController
     {
+        private readonly StatusRepository _repo;
+
+        public StatusAPIController()
+        {
+            _repo = new StatusRepository();
+        }
+
         [HttpGet]
         [Route("api/StatusAPI")]
         public IEnumerable<Status> Get()
         {
-            var repo = new StatusRepository();
-            return repo.Get();
+            return _repo.Get();
         }
-
+        
         [HttpPost]
         [Route("api/StatusAPI/Create")]
         public Status Create(Status status)
         {
-            var repo = new StatusRepository();
-            return repo.Create(status);
+            return _repo.Create(status);
         }
-
+        
         [HttpDelete]
-        [Route("api/StatusAPI/Delete")]
+        [Route("api/StatusAPI/Delete/{Id:int}")]
         public void Delete(int? Id)
         {
-            var repo = new StatusRepository();
-            repo.Delete(Id);
+            _repo.Delete(Id);
         }
 
         [HttpPut]
         [Route("api/StatusAPI/Update")]
-        public void Update(int? Id, string title)
+        public Status Update(Status status)
         {
-            var repo = new StatusRepository();
-            repo.Update(Id, title);
+            _repo.Update(status);
+            return _repo.Get(status.Id);
         }
     }
 }

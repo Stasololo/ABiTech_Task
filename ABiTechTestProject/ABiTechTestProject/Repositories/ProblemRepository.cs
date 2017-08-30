@@ -16,16 +16,30 @@ namespace ABiTechTestProject.Repositories
             _dbContext = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// метод показа списка объектов Problem
+        /// </summary>
+        /// <returns>возвращает список объектов Problem</returns>
         public IEnumerable<Problem>Get()
         {
             return _dbContext.Problems.Include("Status").Include("Person");
         }
 
+        /// <summary>
+        /// метод возвращающий объект Problem по его id
+        /// </summary>
+        /// <param name="id">id - id объекта Problem</param>
+        /// <returns>возвращает объект Problem</returns>
         public Problem Get(int id)
         {
             return _dbContext.Problems.Include("Status").Include("Person").FirstOrDefault(x=> x.Id == id);
         }
 
+        /// <summary>
+        /// мектод создания нового объекта Problem
+        /// </summary>
+        /// <param name="problem"></param>
+        /// <returns>возвращает созданный объект Problem</returns>
         public Problem Create(Problem problem)
         {
             var status = _dbContext.Statuses.Find(problem.Status.Id);
@@ -37,6 +51,10 @@ namespace ABiTechTestProject.Repositories
             return result;
         }
 
+        /// <summary>
+        /// метод удаления объекта Problem
+        /// </summary>
+        /// <param name="Id">Id - Id удаляемого объекта Problem</param>
         public void Delete(int? Id)
         {
             var problem = _dbContext.Problems.Find(Id);
@@ -44,6 +62,11 @@ namespace ABiTechTestProject.Repositories
             _dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// метод изменения объекта Problem
+        /// </summary>
+        /// <param name="model">model - изменяемый объект Problem</param>
+        /// <returns>возвращает измененный объект Problem</returns>
         public void Update(ProblemUpdateVM model)
         {
             var problem = _dbContext.Problems.Find(model.Id);

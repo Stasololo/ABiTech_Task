@@ -52,6 +52,7 @@ export class TodoComponent implements OnInit {
     constructor(private http: Http) {
     }
 
+    //метод отображающий список Problem
     ngOnInit() {
         this.http.get('/api/ProblemAPI').subscribe(data => {
             this.problemList = JSON.parse(data['_body']);
@@ -66,6 +67,7 @@ export class TodoComponent implements OnInit {
         });
     }
 
+    //делает объект Problem из общего списка активным для изменения
     setActiveProblem(problem: IProblem): void {
         this.selectedProblem = problem;
     }
@@ -74,6 +76,7 @@ export class TodoComponent implements OnInit {
         this.http.post('/api/ProblemAPI/Create', this.newProblem).subscribe(data => {
             this.problemList.push(JSON.parse(data['_body']));
 
+            //обнуление полей
             this.newProblem.Name = '';
             this.newProblem.Description = '';
             this.newProblem.Status = null;
@@ -81,6 +84,7 @@ export class TodoComponent implements OnInit {
         });
     }
 
+    //метод создания нового Problem
     deleteProblem(model: IProblem): void {
         this.http.delete('/api/ProblemAPI/Delete/' + model.Id).subscribe((res) => {
             var index = this.problemList.indexOf(model, 0);
@@ -90,6 +94,7 @@ export class TodoComponent implements OnInit {
         });
     }
 
+    //метод удаления Problem из списка
     updateProblem(model: IProblem): void {
         let data = {
             Id: model.Id,

@@ -8,34 +8,70 @@ namespace ABiTechTestProject.Repositories
 {
     public class StatusRepository
     {
-        public IEnumerable<Status> Get()
+        private readonly ApplicationDbContext _dbContext;
+
+        public StatusRepository()
         {
-            var ctx = new ApplicationDbContext();
-            return ctx.Statuses;
+            _dbContext = new ApplicationDbContext();
         }
 
+        /// <summary>
+        /// метод показа списка объектов Status
+        /// </summary>
+        /// <returns>возвращает список объектов Status</returns>
+        public IEnumerable<Status> Get()
+        {
+            return _dbContext.Statuses;
+        }
+
+        /// <summary>
+        /// метод возвращающий объект Status по его id
+        /// </summary>
+        /// <param name="id">id - id объекта Status</param>
+        /// <returns>возвращает объект Status</returns>
+        public Status Get(int id)
+        {
+            return _dbContext.Statuses.FirstOrDefault(x => x.Id == id);
+        }
+
+        /// <summary>
+        /// метод создания нового объект Status
+        /// </summary>
+        /// <param name="status">status - объект Status</param>
+        /// <returns>возвращает созданный объект Status</returns>
         public Status Create(Status status)
         {
-            var ctx = new ApplicationDbContext();
-            var result = ctx.Statuses.Add(status);
-            ctx.SaveChanges();
+            var result = _dbContext.Statuses.Add(status);
+            _dbContext.SaveChanges();
             return result;
         }
 
+        /// <summary>
+        /// метод удаления Status
+        /// </summary>
+        /// <param name="Id">Id - Id удаляемого объекта Status</param>
         public void Delete(int? Id)
         {
-            var ctx = new ApplicationDbContext();
-            var status = ctx.Statuses.Find(Id);
-            ctx.Statuses.Remove(status);
-            ctx.SaveChanges();
+            var status = _dbContext.Statuses.Find(Id);
+            _dbContext.Statuses.Remove(status);
+            _dbContext.SaveChanges();
         }
 
-        public void Update(int? Id, string title)
+        /// <summary>
+        /// метод изменения объекта Status
+        /// </summary>
+        /// <param name="status">status - изменяемый объект Status</param>
+        /// <returns>возвращает измененный объект Status</returns>
+        public void Update(Status model)
         {
-            var ctx = new ApplicationDbContext();
-            var status = ctx.Statuses.Find(Id);
-            status.Title = title;
-            ctx.SaveChanges();
+            var status = _dbContext.Statuses.Find(model.Id);
+            status.Title = model.Title;
+            _dbContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
         }
     }
 }

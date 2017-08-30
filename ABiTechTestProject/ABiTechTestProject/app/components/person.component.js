@@ -55,13 +55,13 @@ var PersonComponent = (function () {
             var index = _this.personList.indexOf(model, 0);
             if (index > -1) {
                 _this.personList.splice(index, 1);
-                console.log("delete");
             }
         });
     };
     PersonComponent.prototype.updatePerson = function (model) {
         var _this = this;
         var data = {
+            Id: model.Id,
             Email: model.Email
         };
         this.http.put('/api/PersonAPI/Update/', data).subscribe(function (res) {
@@ -69,7 +69,6 @@ var PersonComponent = (function () {
             var index = _this.personList.indexOf(model, 0);
             if (index > -1) {
                 _this.personList.splice(index, 1, data);
-                console.log("update");
             }
         });
     };

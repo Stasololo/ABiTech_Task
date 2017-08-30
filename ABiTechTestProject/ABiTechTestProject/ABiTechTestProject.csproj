@@ -271,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\templates\person-list.html" />
+    <Content Include="app\templates\status-list.html" />
     <Content Include="app\templates\todo-list.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1124,7 +1125,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\Home\Person.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1143,6 +1143,7 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\components\person.component.ts" />
+    <TypeScriptCompile Include="app\components\status.component.ts" />
     <TypeScriptCompile Include="app\models\Models.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\components\todo.component.ts" />

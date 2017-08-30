@@ -17,6 +17,7 @@ namespace ABiTechTestProject.Controllers
         {
             _repo = new PersonRepository();
         }
+
         [HttpGet]
         [Route("api/PersonAPI")]
         public IEnumerable<Person> Get()
@@ -32,18 +33,19 @@ namespace ABiTechTestProject.Controllers
         }
 
         [HttpDelete]
-        [Route("api/PersonAPI/Delete")]
+        [Route("api/PersonAPI/Delete/{Id:int}")]
         public void Delete(int? Id)
         {
             _repo.Delete(Id);
         }
 
+        
         [HttpPut]
         [Route("api/PersonAPI/Update")]
-        public Person Update(Person model)
+        public Person Update(Person person)
         {
-            _repo.Update(model);
-            return _repo.Get(model.Id);
+            _repo.Update(person);
+            return _repo.Get(person.Id);
         }
     }
 }

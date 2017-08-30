@@ -8,6 +8,7 @@ import { IPerson } from "../models/Models";
     templateUrl: '/app/templates/person-list.html'
 })
 
+
 export class PersonComponent implements OnInit {
 
     personList: Array<IPerson> = [];
@@ -19,7 +20,7 @@ export class PersonComponent implements OnInit {
         BirthDay: null,
         Email: ""
     };
-
+    
     selectedPerson: IPerson = {
         Id: null,
         FirstName: "",
@@ -31,6 +32,7 @@ export class PersonComponent implements OnInit {
     constructor(private http: Http) {
     }
 
+    //метод отображающий список Person
     ngOnInit() {
         
         this.http.get('/api/PersonAPI').subscribe(data => {
@@ -38,14 +40,17 @@ export class PersonComponent implements OnInit {
         });
     }
 
+    //делает объект Person из общего списка активным для изменения
     setActivePerson(person: IPerson): void {
         this.selectedPerson = person;
     }
 
+    //метод создания нового Person
     createPerson(): void {
         this.http.post('/api/PersonAPI/Create', this.newPerson).subscribe(data => {
             this.personList.push(JSON.parse(data['_body']));
 
+            //обнуление полей
             this.newPerson.FirstName = '';
             this.newPerson.SurName = '';
             this.newPerson.BirthDay = null;
@@ -53,18 +58,20 @@ export class PersonComponent implements OnInit {
         });
     }
 
+    //метод удаления Person из списка
     deletePerson(model: IPerson): void {
         this.http.delete('/api/PersonAPI/Delete/' + model.Id).subscribe((res) => {
             var index = this.personList.indexOf(model, 0);
             if (index > -1) {
                 this.personList.splice(index, 1);
-                console.log("delete");
             }
         });
     }
 
+    //метод изменения объекта Person
     updatePerson(model: IPerson): void {
         let data = {
+            Id: model.Id,
             Email: model.Email
         };
         this.http.put('/api/PersonAPI/Update/', data).subscribe((res) => {
@@ -73,8 +80,6 @@ export class PersonComponent implements OnInit {
             var index = this.personList.indexOf(model, 0);
             if (index > -1) {
                 this.personList.splice(index, 1, data);
-
-                console.log("update")
             }
         });
     }

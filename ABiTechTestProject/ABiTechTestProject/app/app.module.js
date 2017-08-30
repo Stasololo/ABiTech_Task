@@ -16,6 +16,7 @@ var app_component_1 = require("./app.component");
 var app_routing_1 = require("./app.routing");
 var todo_component_1 = require("./components/todo.component");
 var person_component_1 = require("./components/person.component");
+var status_component_1 = require("./components/status.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, forms_2.ReactiveFormsModule, app_routing_1.routing],
-        declarations: [app_component_1.AppComponent, todo_component_1.TodoComponent, person_component_1.PersonComponent],
+        declarations: [app_component_1.AppComponent, todo_component_1.TodoComponent, person_component_1.PersonComponent, status_component_1.StatusComponent],
         bootstrap: [app_component_1.AppComponent],
         providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }]
     })
