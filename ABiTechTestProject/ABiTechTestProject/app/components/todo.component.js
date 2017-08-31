@@ -50,6 +50,7 @@ var TodoComponent = (function () {
             }
         };
     }
+    //метод отображающий список Problem
     TodoComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.http.get('/api/ProblemAPI').subscribe(function (data) {
@@ -62,6 +63,7 @@ var TodoComponent = (function () {
             _this.personList = JSON.parse(data['_body']);
         });
     };
+    //делает объект Problem из общего списка активным для изменения
     TodoComponent.prototype.setActiveProblem = function (problem) {
         this.selectedProblem = problem;
     };
@@ -69,12 +71,14 @@ var TodoComponent = (function () {
         var _this = this;
         this.http.post('/api/ProblemAPI/Create', this.newProblem).subscribe(function (data) {
             _this.problemList.push(JSON.parse(data['_body']));
+            //обнуление полей
             _this.newProblem.Name = '';
             _this.newProblem.Description = '';
             _this.newProblem.Status = null;
             _this.newProblem.Person = null;
         });
     };
+    //метод создания нового Problem
     TodoComponent.prototype.deleteProblem = function (model) {
         var _this = this;
         this.http.delete('/api/ProblemAPI/Delete/' + model.Id).subscribe(function (res) {
@@ -84,6 +88,7 @@ var TodoComponent = (function () {
             }
         });
     };
+    //метод удаления Problem из списка
     TodoComponent.prototype.updateProblem = function (model) {
         var _this = this;
         var data = {

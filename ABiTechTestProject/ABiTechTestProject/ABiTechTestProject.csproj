@@ -239,10 +239,13 @@
     <Compile Include="Controllers\PersonAPIController.cs" />
     <Compile Include="Controllers\ProblemAPIController.cs" />
     <Compile Include="Controllers\StatusAPIController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IProblemRepository.cs" />
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IValidationManager.cs" />
+    <Compile Include="Managers\StatusValidationManager.cs" />
     <Compile Include="Migrations\201708261228055_TestProject.cs" />
     <Compile Include="Migrations\201708261228055_TestProject.Designer.cs">
       <DependentUpon>201708261228055_TestProject.cs</DependentUpon>

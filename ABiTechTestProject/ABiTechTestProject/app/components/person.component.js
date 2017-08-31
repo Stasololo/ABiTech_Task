@@ -30,25 +30,30 @@ var PersonComponent = (function () {
             Email: ""
         };
     }
+    //метод отображающий список Person
     PersonComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.http.get('/api/PersonAPI').subscribe(function (data) {
             _this.personList = JSON.parse(data['_body']);
         });
     };
+    //делает объект Person из общего списка активным для изменения
     PersonComponent.prototype.setActivePerson = function (person) {
         this.selectedPerson = person;
     };
+    //метод создания нового Person
     PersonComponent.prototype.createPerson = function () {
         var _this = this;
         this.http.post('/api/PersonAPI/Create', this.newPerson).subscribe(function (data) {
             _this.personList.push(JSON.parse(data['_body']));
+            //обнуление полей
             _this.newPerson.FirstName = '';
             _this.newPerson.SurName = '';
             _this.newPerson.BirthDay = null;
             _this.newPerson.Email = '';
         });
     };
+    //метод удаления Person из списка
     PersonComponent.prototype.deletePerson = function (model) {
         var _this = this;
         this.http.delete('/api/PersonAPI/Delete/' + model.Id).subscribe(function (res) {
@@ -58,6 +63,7 @@ var PersonComponent = (function () {
             }
         });
     };
+    //метод изменения объекта Person
     PersonComponent.prototype.updatePerson = function (model) {
         var _this = this;
         var data = {

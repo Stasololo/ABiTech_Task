@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABiTechTestProject", "ABiTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{7F53D744-1213-4980-9118-A3CB8BB487DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumTestProject", "SeleniumTestProject\SeleniumTestProject.csproj", "{70ABD6F9-EAB5-4B6F-AA0F-97DDFF088DF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7F53D744-1213-4980-9118-A3CB8BB487DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F53D744-1213-4980-9118-A3CB8BB487DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F53D744-1213-4980-9118-A3CB8BB487DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70ABD6F9-EAB5-4B6F-AA0F-97DDFF088DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70ABD6F9-EAB5-4B6F-AA0F-97DDFF088DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70ABD6F9-EAB5-4B6F-AA0F-97DDFF088DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70ABD6F9-EAB5-4B6F-AA0F-97DDFF088DF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

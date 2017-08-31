@@ -1,4 +1,5 @@
-﻿using ABiTechTestProject.Models;
+﻿using ABiTechTestProject.Interface;
+using ABiTechTestProject.Models;
 using ABiTechTestProject.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace ABiTechTestProject.Repositories
 {
-    public class ProblemRepository : IDisposable
+    public class ProblemRepository : IProblemRepository, IDisposable
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -55,7 +56,7 @@ namespace ABiTechTestProject.Repositories
         /// метод удаления объекта Problem
         /// </summary>
         /// <param name="Id">Id - Id удаляемого объекта Problem</param>
-        public void Delete(int? Id)
+        public void Delete(int Id)
         {
             var problem = _dbContext.Problems.Find(Id);
             _dbContext.Problems.Remove(problem);
@@ -81,6 +82,11 @@ namespace ABiTechTestProject.Repositories
         public void Dispose()
         {
             _dbContext.Dispose();
+        }
+
+        public void Update(Problem model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

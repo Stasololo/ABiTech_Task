@@ -1,4 +1,5 @@
-﻿using ABiTechTestProject.Models;
+﻿using ABiTechTestProject.Interface;
+using ABiTechTestProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace ABiTechTestProject.Repositories
 {
-    public class StatusRepository
+    public class StatusRepository : IRepository<Status>
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -50,7 +51,7 @@ namespace ABiTechTestProject.Repositories
         /// метод удаления Status
         /// </summary>
         /// <param name="Id">Id - Id удаляемого объекта Status</param>
-        public void Delete(int? Id)
+        public void Delete(int Id)
         {
             var status = _dbContext.Statuses.Find(Id);
             _dbContext.Statuses.Remove(status);

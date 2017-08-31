@@ -21,5 +21,22 @@ namespace ABiTechTestProject
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
+
+        protected void Application_Error(Object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError();
+            HttpException httpException = ex as HttpException;
+
+            if (ex != null)
+            {
+                int errorCode = httpException.GetHttpCode();
+
+                if (errorCode == 404)
+                {
+
+                    Response.Redirect("~/");
+                }
+            }
+        }
     }
 }

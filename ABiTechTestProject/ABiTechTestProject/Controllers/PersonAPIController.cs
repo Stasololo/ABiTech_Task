@@ -34,7 +34,7 @@ namespace ABiTechTestProject.Controllers
 
         [HttpDelete]
         [Route("api/PersonAPI/Delete/{Id:int}")]
-        public void Delete(int? Id)
+        public void Delete(int Id)
         {
             _repo.Delete(Id);
         }

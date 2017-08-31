@@ -1,4 +1,5 @@
-﻿using ABiTechTestProject.Models;
+﻿using ABiTechTestProject.Interface;
+using ABiTechTestProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace ABiTechTestProject.Repositories
 {
-    public class PersonRepository : IDisposable
+    public class PersonRepository : IRepository<Person>, IDisposable
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -50,7 +51,7 @@ namespace ABiTechTestProject.Repositories
         /// метод удаления объекта Person
         /// </summary>
         /// <param name="Id">Id - Id удаляемого объекта Person</param>
-        public void Delete(int? Id)
+        public void Delete(int Id)
         {
             var person = _dbContext.Persons.Find(Id);
             _dbContext.Persons.Remove(person);

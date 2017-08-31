@@ -24,6 +24,7 @@ var StatusComponent = (function () {
             Title: ""
         };
     }
+    //метод отображающий список Status 
     StatusComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log(this.statusList);
@@ -36,13 +37,16 @@ var StatusComponent = (function () {
     StatusComponent.prototype.setActiveStatus = function (status) {
         this.selectedStatus = status;
     };
+    //делает объект Status из общего списка активным для изменения
     StatusComponent.prototype.createStatus = function () {
         var _this = this;
         this.http.post('/api/StatusAPI/Create', this.newStatus).subscribe(function (data) {
             _this.statusList.push(JSON.parse(data['_body']));
+            //обнуление поля
             _this.newStatus.Title = '';
         });
     };
+    //метод создания нового Person
     StatusComponent.prototype.deleteStatus = function (model) {
         var _this = this;
         this.http.delete('/api/StatusAPI/Delete/' + model.Id).subscribe(function (res) {
@@ -52,6 +56,7 @@ var StatusComponent = (function () {
             }
         });
     };
+    //метод удаления Status из списка
     StatusComponent.prototype.updateStatus = function (model) {
         var _this = this;
         var data = {
